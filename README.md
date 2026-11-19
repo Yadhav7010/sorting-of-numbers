@@ -23,14 +23,39 @@ To write and execute an Assembly Language Program for sorting data in Ascending 
 ## Program (Ascending order)
 
 ```asm
+ORG 0000H
 
+        MOV R4,#04H
+
+AGAIN:  MOV R3,#04H
+        MOV R0,#30H
+
+LOOP1:  MOV A,@R0
+        MOV B,A
+        INC R0
+        MOV A,@R0
+        CJNE A,B,CONTINUE
+
+CONTINUE:
+        JNC SKIP
+        MOV @R0,B
+        DEC R0
+        MOV @R0,A
+        INC R0
+
+SKIP:   DJNZ R3,LOOP1
+        DJNZ R4,AGAIN
+
+STOP:   SJMP STOP
+
+END
 
 
 
 ```
 ## OUTPUT(Ascending order)
 
-
+<img width="1919" height="1199" alt="Screenshot 2026-02-12 110014" src="https://github.com/user-attachments/assets/8cb81a24-ed98-4784-b446-c421739fab1c" />
 
 ---
 
@@ -44,18 +69,46 @@ To write and execute an Assembly Language Program for sorting data in Ascending 
 5. Again increment pointer and decrement **R7**.  
 6. Check if **R7 = 0**:  
    - If **No**, repeat the process from Step 2.  
-   - If **Yes**, stop the program.  
+   - If **Yes**, stop the program.
+     
 ---
+
 ## Program (Descending order)
 
 ```asm
 
+ORG 0000H
 
+        MOV R4,#04H
+
+AGAIN:  MOV R3,#04H
+        MOV R0,#30H
+
+LOOP1:  MOV A,@R0
+        MOV B,A
+        INC R0
+        MOV A,@R0
+        CJNE A,B,CONTINUE
+
+CONTINUE:
+        JC SKIP
+        MOV @R0,B
+        DEC R0
+        MOV @R0,A
+        INC R0
+
+SKIP:   DJNZ R3,LOOP1
+        DJNZ R4,AGAIN
+
+STOP:   SJMP STOP
+
+END
 
 
 ```
 ## OUTPUT(Descending order)
 
+<img width="1919" height="1199" alt="Screenshot 2026-02-12 110501" src="https://github.com/user-attachments/assets/1ff7415d-0248-437a-b32a-f87e0e401bca" />
 
 
 ---
